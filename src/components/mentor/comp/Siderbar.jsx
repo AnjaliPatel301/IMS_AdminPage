@@ -1,17 +1,15 @@
 import { PiSquaresFourThin } from "react-icons/pi";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
-import logo from "../assets/c.png";
+import logo from "../comp/c.png"
 import { FiSettings } from "react-icons/fi";
-import { FaUser } from "react-icons/fa";
 import { LuLogOut } from "react-icons/lu";
-import {  Columns3Cog, PanelTop } from "lucide-react";
-import { MdOutlineSubscriptions } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
-import { GrTask } from "react-icons/gr";
-import { PiFilesFill } from "react-icons/pi";
+import { MdReviews } from "react-icons/md";
+import { LiaListAltSolid } from "react-icons/lia";
 
-const Sidebar = ({ active, setActive, sidebarOpen, setSidebarOpen, onLogout }) => {
+
+const Sidebar = ({ active, setActive, sidebarOpen, setSidebarOpen ,onLogout }) => {
   const [open, setOpen] = useState(false);
   const menu = [
     {
@@ -19,34 +17,25 @@ const Sidebar = ({ active, setActive, sidebarOpen, setSidebarOpen, onLogout }) =
       icon: PiSquaresFourThin,
     },
     {
-      name: "Mentors",
-      icon: FaUser,
-    },
-
-    {
       name: "Interns",
-      icon:FaUsers,
+      icon: FaUsers,
     },
     {
-      name: "Tasks",
-      icon: GrTask,
+      name: "Assign Task",
+      icon: LiaListAltSolid,
     },
     {
-      name: "Attendance",
-      icon: PanelTop,
+      name: "Review Submissions",
+      icon: MdReviews,
     },
-    {
-      name: "Report",
-      icon: PiFilesFill,
-    },
+    
   ];
-  
   return (
-   <>
+    <>
       {sidebarOpen && (
         <div
           onClick={() => setSidebarOpen(false)}
-          className="fixed font-[Poppins] inset-0 bg-[#FFA138] z-40 md:hidden"
+          className="fixed font-[Poppins] inset-0 bg-[#08469D]/40 z-40 md:hidden"
         />
       )}
 
@@ -54,24 +43,16 @@ const Sidebar = ({ active, setActive, sidebarOpen, setSidebarOpen, onLogout }) =
         className={`
     fixed md:sticky top-0 left-0 z-50
     min-h-screen w-[240px]
-   bg-[#08469D] text-white
+    bg-[#08469D] text-white
     transition-transform duration-300
     ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
     md:translate-x-0
     flex flex-col
   `}
       >
-        <div className="h-[80px]  px-5 font-[Poppins] flex items-center bg-white justify-between">
-          <div className="flex justify-between items-center gap-2">
-            <img src={logo} className="h-14" alt="logo" />
-            {/* <div className=" gap-0  ">
-              <h1 className="text-[24px]  text-[#0c1b5b] font-[Roboto]  font-bold">
-                SolstraInfo
-              </h1>
-              <p className="text-[16px] text-[#FFA138]">
-                Super Admin Control 
-              </p>
-            </div> */}
+        <div className="h-[80px]  px-5 font-[Poppins] flex items-center justify-between bg-white">
+          <div className="flex items-center gap-3">
+            <img src={logo} alt="logo" />
           </div>
 
           <button className="md:hidden" onClick={() => setSidebarOpen(false)}>
@@ -91,8 +72,8 @@ const Sidebar = ({ active, setActive, sidebarOpen, setSidebarOpen, onLogout }) =
                 }}
                 className={`
                   flex items-center gap-3 w-full h-[44px] px-4 rounded
-                  hover:bg-[#FFA138] transition
-                  ${active === item.name ? "bg-[#FFA138]" : ""}
+                  hover:bg-[#F6901C]  transition
+                  ${active === item.name ? "bg-[#F6901C]" : ""}
                 `}
               >
                 <Icon size={18} />
@@ -105,19 +86,22 @@ const Sidebar = ({ active, setActive, sidebarOpen, setSidebarOpen, onLogout }) =
         <div className="p-4 border-t font-[Poppins] border-white/10">
           <a
             href="#"
-            className="flex items-center rounded w-[204px] h-[44px] px-[16px] py-14px hover:bg-[#FFA138]"
+            className="flex items-center  rounded w-[204px] h-[44px] px-[16px] py-14px hover:bg-[#F6901C]"
           >
             <FiSettings className="h-[18px] w-[18px] " />
-            <p className="p-2 text-white font-[poppins] font-[400] ">Settings</p>
+            <p className="p-2 text-[#FAFDEC] font-[poppins] font-[400] ">
+              Settings
+            </p>
           </a>
-
-          <button
-            onClick={() => onLogout && onLogout()}
-            className="flex items-center rounded w-[204px] h-[44px] px-[16px] py-14px hover:bg-[#FFA138] text-left"
+          <a
+            href="#"
+            className="flex items-center  rounded w-[204px] h-[44px] px-[16px] py-14px hover:bg-[#F6901C]"
           >
             <LuLogOut className="h-[18px] w-[18px] " />
-            <p className="p-2 text-white font-[poppins] font-[400] ">Logout</p>
-          </button>
+            <p  onClick={onLogout} className="p-2 text-[#FAFDEC] font-[poppins] font-[400] ">
+              Logout
+            </p>
+          </a>
         </div>
       </aside>
     </>

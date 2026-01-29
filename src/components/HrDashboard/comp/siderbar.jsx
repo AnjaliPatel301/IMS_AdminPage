@@ -1,17 +1,19 @@
 import { PiSquaresFourThin } from "react-icons/pi";
+import { LuUsers } from "react-icons/lu";
+import { GiAbacus } from "react-icons/gi";
+import { FaArrowTrendUp } from "react-icons/fa6";
+import { SiGoogleanalytics } from "react-icons/si";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
-import logo from "../assets/c.png";
+import logo from "./c.png"
 import { FiSettings } from "react-icons/fi";
-import { FaUser } from "react-icons/fa";
 import { LuLogOut } from "react-icons/lu";
-import {  Columns3Cog, PanelTop } from "lucide-react";
+import { Building2, Columns3Cog, PanelTop } from "lucide-react";
 import { MdOutlineSubscriptions } from "react-icons/md";
-import { FaUsers } from "react-icons/fa";
-import { GrTask } from "react-icons/gr";
-import { PiFilesFill } from "react-icons/pi";
+import BusinessIcon from "@mui/icons-material/Business";
+import PieChartIcon from "@mui/icons-material/PieChart";
 
-const Sidebar = ({ active, setActive, sidebarOpen, setSidebarOpen, onLogout }) => {
+const Sidebar = ({onLogout, active, setActive, sidebarOpen, setSidebarOpen }) => {
   const [open, setOpen] = useState(false);
   const menu = [
     {
@@ -19,30 +21,28 @@ const Sidebar = ({ active, setActive, sidebarOpen, setSidebarOpen, onLogout }) =
       icon: PiSquaresFourThin,
     },
     {
-      name: "Mentors",
-      icon: FaUser,
-    },
-
-    {
-      name: "Interns",
-      icon:FaUsers,
+      name: "Companies",
+      icon: BusinessIcon,
     },
     {
-      name: "Tasks",
-      icon: GrTask,
+      name: "Plans Management",
+      icon: Columns3Cog,
     },
     {
-      name: "Attendance",
+      name: "Platform Analytics",
+      icon: PieChartIcon,
+    },
+    {
+      name: "Payment History",
       icon: PanelTop,
     },
     {
-      name: "Report",
-      icon: PiFilesFill,
+      name: "Subscriptions",
+      icon: MdOutlineSubscriptions,
     },
   ];
-  
   return (
-   <>
+    <>
       {sidebarOpen && (
         <div
           onClick={() => setSidebarOpen(false)}
@@ -105,18 +105,22 @@ const Sidebar = ({ active, setActive, sidebarOpen, setSidebarOpen, onLogout }) =
         <div className="p-4 border-t font-[Poppins] border-white/10">
           <a
             href="#"
-            className="flex items-center rounded w-[204px] h-[44px] px-[16px] py-14px hover:bg-[#FFA138]"
+            className="flex items-center rounded w-[204px] h-[44px] px-[16px] hover:bg-[#FFA138]"
           >
             <FiSettings className="h-[18px] w-[18px] " />
-            <p className="p-2 text-white font-[poppins] font-[400] ">Settings</p>
+            <span className="p-2 text-white font-[poppins] font-[400] ">
+              Settings
+            </span>
           </a>
-
           <button
-            onClick={() => onLogout && onLogout()}
-            className="flex items-center rounded w-[204px] h-[44px] px-[16px] py-14px hover:bg-[#FFA138] text-left"
+            type="button"
+            onClick={(e) => { e.preventDefault(); onLogout && onLogout(); }}
+            className="flex items-center rounded w-[204px] h-[44px] px-[16px] hover:bg-[#FFA138]"
           >
             <LuLogOut className="h-[18px] w-[18px] " />
-            <p className="p-2 text-white font-[poppins] font-[400] ">Logout</p>
+            <span className="p-2 text-white font-[poppins] font-[400] ">
+              Logout
+            </span>
           </button>
         </div>
       </aside>
